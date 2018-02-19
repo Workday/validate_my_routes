@@ -1,0 +1,33 @@
+// ==================
+// Successful validation for POST route
+POST http://localhost:8080/orders/5
+Content-Type: application/json
+
+{
+  "id": 1,
+  "type": "cappuccino"
+}
+
+// HTTP/1.1 200 OK
+// order with id 5 created
+
+// ==================
+// Successful validation for GET route
+GET http://localhost:8080/orders/5
+
+// HTTP/1.1 200 OK
+// your order with id 5 is awaiting approval
+
+// ==================
+// Failed validation when type is wrong
+GET http://localhost:8080/orders/foo
+
+// HTTP/1.1 404 Not Found
+// was expected order_id parameter to be of type <Integer> and between <2> and <6>
+
+// ==================
+// Failed validation when condition on the value is wrong
+GET http://localhost:8080/orders/9
+
+// HTTP/1.1 404 Not Found
+// was expected order_id parameter to be between <2> and <6>, but was <9>

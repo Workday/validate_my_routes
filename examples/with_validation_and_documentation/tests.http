@@ -1,0 +1,47 @@
+// ==================
+// Successful validation for POST route
+POST http://localhost:8080/orders/5
+Content-Type: application/json
+
+{
+  "id": 1,
+  "type": "cappuccino"
+}
+
+// HTTP/1.1 204 No Content 
+// Location: http://localhost:8080/orders/5
+
+// ==================
+// Successful validation for GET route
+GET http://localhost:8080/orders/5
+
+// HTTP/1.1 200 OK
+// order 5
+
+// ==================
+// Failed validation (type: Integer)
+GET http://localhost:8080/orders/foo
+
+// HTTP/1.1 404 Not Found
+// was expected order_id parameter to be of type <Integer>, but was <foo>
+
+// ==================
+// Failed validation (between 2 and 6)
+GET http://localhost:8080/orders/9
+
+// HTTP/1.1 404 Not Found
+// was expected order_id parameter to be between <2> and <6>, but was <9>
+
+// ==================
+// Successful validation for partial id
+GET http://localhost:8080/orders?partial_id=5
+
+// HTTP/1.1 200 OK
+// ["order 5"]
+
+// ==================
+// Failed validation for partial id
+GET http://localhost:8080/orders?partial_id=order
+
+// HTTP/1.1 400 Bad Request
+// was expected partial_id parameter to be of a type <Integer>, but was <order>

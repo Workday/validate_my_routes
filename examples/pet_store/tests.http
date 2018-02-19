@@ -1,0 +1,50 @@
+// ==================
+// Successful validation
+POST http://localhost:8080/pet
+Content-Type: application/json
+
+{
+  "name": "Frostie",
+  "status": "available"
+}
+
+// ==================
+// Checking that pet was added to the store
+GET http://localhost:8080/pet
+
+// HTTP/1.1 200 OK
+// [{"name":"Frostie","status":"available","id":0}]
+
+// ==================
+// Failed inline validation
+POST http://localhost:8080/pet
+Content-Type: application/json
+
+{
+  "name": "Bobik",
+  "status": "sold"
+}
+
+// HTTP/1.1 400 Bad Request
+// Body is expected to receive json pet with status available, but was {"name":"Bobik","status":"sold"}
+
+// ==================
+// Successful validation
+GET http://localhost:8080/pet/0
+
+// HTTP/1.1 200 OK
+// {"name":"Frostie","status":"available","id":0}
+
+// ==================
+// Successful validation (but resource not found)
+GET http://localhost:8080/pet/5
+
+// HTTP/1.1 404 Not Found
+// Pet with id 5 not found
+
+// ==================
+// Failed validation
+GET http://localhost:8080/pet/foo
+
+// HTTP/1.1 400 Bad Request
+// was expected pet_id parameter to be of a type <Integer>, but was <foo>

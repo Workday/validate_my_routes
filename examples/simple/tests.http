@@ -1,0 +1,13 @@
+// ==================
+// Successful validation
+GET http://localhost:8080/5
+
+// HTTP/1.1 200 OK 
+// my parameter with value 5 was validated!
+
+// ==================
+// Failed validation
+GET http://localhost:8080/foo
+
+// HTTP/1.1 404 Not Found
+// was expected my_param parameter to be of a type <Integer>, but was <foo>
