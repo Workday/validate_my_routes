@@ -5,7 +5,7 @@ describe 'ValidateMyRoutes transformation rules' do
 
   describe 'Transformation `value_as`' do
     include_context 'with mocked route in test app with path params validation',
-                    "value_as(Integer, greater_than(5))"
+                    'value_as(Integer, greater_than(5))'
 
     let(:path_param) { '10' }
     include_examples 'returns rule description in body', 'greater than <5>'

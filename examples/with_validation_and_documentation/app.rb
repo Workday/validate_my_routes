@@ -31,7 +31,7 @@ module Examples
 
     summary 'Create new order with specified id'
     status_codes [204, 400, 404]
-    parameter :order_id, in: :path, description: "Id of the created order"
+    parameter :order_id, in: :path, description: 'Id of the created order'
     notes "includes validation for order_id parameter: #{order_id_validation.description}"
     post '/orders/:order_id' do |order_id|
       id = order_id.to_i
@@ -44,7 +44,7 @@ module Examples
 
     summary "Get an order by it's id"
     status_codes [200, 404]
-    parameter :order_id, in: :path, description: "Id of the created order"
+    parameter :order_id, in: :path, description: 'Id of the created order'
     notes "includes validation for order_id parameter: #{order_id_validation.description}"
     get '/orders/:order_id' do |order_id|
       id = order_id.to_i

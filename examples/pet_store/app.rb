@@ -15,7 +15,7 @@ module Examples
     def_all_params_validator :is_a_pet_with_status do |expected_status|
       # define actual validation of received value
       validate do |json|
-        extra_props = json.keys - %w(status name)
+        extra_props = json.keys - %w[status name]
         extra_props.empty? && json['status'] == expected_status
       end
 
@@ -37,7 +37,7 @@ module Examples
       super
     end
 
-    VALID_STATUSES = %w(available unavailable sold).freeze
+    VALID_STATUSES = %w[available unavailable sold].freeze
 
     # As our application supports only json body type, we will parse JSON object before processing
     # the request to have parsed object in @request_body

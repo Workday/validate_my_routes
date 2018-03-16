@@ -87,7 +87,9 @@ describe ValidateMyRoutes::Validate::ConvertToType do
 
       context 'with valid DateTime value' do
         let(:value) { '2017-07-27 22:34:33' }
+        # rubocop:disable Style/DateTime
         it_behaves_like 'a successful conversion', DateTime.new(2017, 7, 27, 22, 34, 33)
+        # rubocop:enable Style/DateTime
       end
 
       context 'with invalid value' do
@@ -115,7 +117,7 @@ describe ValidateMyRoutes::Validate::ConvertToType do
 
       context 'with valid Array value (val1,val2,val3)' do
         let(:value) { 'a,b,c' }
-        it_behaves_like 'a successful conversion', %w(a b c)
+        it_behaves_like 'a successful conversion', %w[a b c]
       end
 
       context 'with empty value' do
@@ -129,7 +131,9 @@ describe ValidateMyRoutes::Validate::ConvertToType do
 
       context 'with valid Hash value (key1:val1,key2:val2,key3:val3)' do
         let(:value) { 'a:A,b:B,c:C' }
+        # rubocop:disable Style/BracesAroundHashParameters
         it_behaves_like 'a successful conversion', { 'a' => 'A', 'b' => 'B', 'c' => 'C' }
+        # rubocop:enable Style/BracesAroundHashParameters
       end
 
       context 'with empty value' do

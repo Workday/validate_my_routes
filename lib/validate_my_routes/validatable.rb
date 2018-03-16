@@ -30,7 +30,7 @@ module ValidateMyRoutes
         app.set(:validate_params) do |*validations|
           condition do
             path_validations = validations.select { |_, rule| rule[:path_param] }
-            query_validations = validations.select { |_, rule| !rule[:path_param] }
+            query_validations = validations.reject { |_, rule| rule[:path_param] }
 
             [path_validations, query_validations].all? do |param_validations|
               param_validations.select { |_, rule| rule[:path_param] }.all? do |param_name, rule|

@@ -3,6 +3,3 @@ Metrics/LineLength:
 
 MethodLength:
   Max: 15
-
-Casecmp:
-  Enabled: false
