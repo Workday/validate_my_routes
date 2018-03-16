@@ -32,8 +32,8 @@ require 'rspec/core/formatters'
 #   * seed(SeedNotification)
 #   * close(NullNotification)
 class DocsFormatter
-  NOTIFICATIONS = %i(sample_code_added example_started example_passed example_pending example_failed
-                     example_group_started example_group_finished).freeze
+  NOTIFICATIONS = %i[sample_code_added example_started example_passed example_pending example_failed
+                     example_group_started example_group_finished].freeze
 
   # This registers the notifications this formatter supports, and tells
   # us that this was written against the RSpec 3.x formatter API.
@@ -66,7 +66,7 @@ class DocsFormatter
     @header_level -= 1 if is_header
   end
 
-  def example_started(_)
+  def example_started(_notification)
     @level += 1
   end
 

@@ -16,14 +16,14 @@ module ValidateMyRoutes
     # or all parameters validation.
     module Rules
       class << self
-        REQUIRED_RULE_METHODS = %i(validate! description rule_type).freeze
+        REQUIRED_RULE_METHODS = %i[validate! description rule_type].freeze
 
         def single_param_rule?(rule)
-          validation_rule?(rule) && %i(single_param general).include?(rule.rule_type)
+          validation_rule?(rule) && %i[single_param general].include?(rule.rule_type)
         end
 
         def all_params_rule?(rule)
-          validation_rule?(rule) && %i(all_params general).include?(rule.rule_type)
+          validation_rule?(rule) && %i[all_params general].include?(rule.rule_type)
         end
 
         # Validate that rule can be used for single parameter validation
@@ -32,11 +32,10 @@ module ValidateMyRoutes
         #
         #    Rules.validate_single_param_rule! required(:q) # => throws an exception
         def validate_single_param_rule!(rule)
-          unless Rules.single_param_rule?(rule)
-            raise ValidateMyRoutes::Errors::UnsupportedRuleError,
-                  "rule #{rule} must implement #{REQUIRED_RULE_METHODS.join(', ')} " \
-                  'and be either :generic or :single_param rule type.'
-          end
+          return if Rules.single_param_rule?(rule)
+          raise ValidateMyRoutes::Errors::UnsupportedRuleError,
+                "rule #{rule} must implement #{REQUIRED_RULE_METHODS.join(', ')} " \
+                'and be either :generic or :single_param rule type.'
         end
 
         # Validate that rule can be used for all parameters validation
@@ -45,11 +44,10 @@ module ValidateMyRoutes
         #
         #    Rules.validate_all_params_rule! of_type(Integer) # => throws an exception
         def validate_all_params_rule!(rule)
-          unless Rules.all_params_rule?(rule)
-            raise ValidateMyRoutes::Errors::UnsupportedRuleError,
-                  "rule #{rule} must implement #{REQUIRED_RULE_METHODS.join(', ')} " \
-                  'and be either :generic or :all_params rule type.'
-          end
+          return if Rules.all_params_rule?(rule)
+          raise ValidateMyRoutes::Errors::UnsupportedRuleError,
+                "rule #{rule} must implement #{REQUIRED_RULE_METHODS.join(', ')} " \
+                'and be either :generic or :all_params rule type.'
         end
 
         private

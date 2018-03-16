@@ -6,7 +6,7 @@ module ValidateMyRoutes
     # to_type. Conversion can fail with InvalidTypeError.
     module ConvertToType
       class << self
-        Boolean         = :Boolean # rubocop:disable Style/ConstantName
+        Boolean         = :Boolean # rubocop:disable Naming/ConstantName
         SIMPLE_TYPES    = [Float, String, Date, Time, DateTime, Integer].freeze
         COMPOSITE_TYPES = [Array, Hash].freeze
         BOOLEAN_TYPES   = [Boolean, TrueClass, FalseClass].freeze
@@ -56,9 +56,9 @@ module ValidateMyRoutes
         end
 
         def parse_boolean(value)
-          if value.to_s.downcase == 'false'
+          if value.to_s.casecmp('false').zero?
             false
-          elsif value.to_s.downcase == 'true'
+          elsif value.to_s.casecmp('true').zero?
             true
           else
             raise_with_invalid_type(value, Boolean)

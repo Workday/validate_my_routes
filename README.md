@@ -1,5 +1,8 @@
 # ValidateMyRoutes
 
+[![Build Status](https://travis-ci.org/Workday/validate_my_routes.svg?branch=master)](https://travis-ci.org/Workday/validate_my_routes)
+[![Gem Version](https://badge.fury.io/rb/validate_my_routes.svg)](https://badge.fury.io/rb/validate_my_routes)
+
 _Parameter Validation for Sinatra_
 
 REST specification defines how to consume web API, however it does not provide specification for

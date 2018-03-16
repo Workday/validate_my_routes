@@ -47,7 +47,7 @@ describe 'ValidateMyRoutes built-in validation rules for all parameters validati
 
   describe 'Validation rules for parameters inclusion' do
     describe 'Validation rule `only_one_of`' do
-      include_examples 'a valid validation rule', VMR_RULES.only_one_of(%i(foo bar)),
+      include_examples 'a valid validation rule', VMR_RULES.only_one_of(%i[foo bar]),
                        all_params: true
 
       include_context 'with mocked route in test app with parameters validation',
@@ -57,7 +57,7 @@ describe 'ValidateMyRoutes built-in validation rules for all parameters validati
 
       include_examples 'returns rule description in body', 'only one of <foo, bar> parameters'
 
-      %w(foo bar another).each do |example|
+      %w[foo bar another].each do |example|
         context "with <#{example}> only provided" do
           let(:query_params) { "?#{example}" }
           include_examples 'succeeds validation'
@@ -73,7 +73,7 @@ describe 'ValidateMyRoutes built-in validation rules for all parameters validati
     end
 
     describe 'Validation rule `exactly_one_of`' do
-      include_examples 'a valid validation rule', VMR_RULES.exactly_one_of(%i(foo bar)),
+      include_examples 'a valid validation rule', VMR_RULES.exactly_one_of(%i[foo bar]),
                        all_params: true
 
       include_context 'with mocked route in test app with parameters validation',
@@ -83,7 +83,7 @@ describe 'ValidateMyRoutes built-in validation rules for all parameters validati
 
       include_examples 'returns rule description in body', 'exactly one of <foo, bar> parameters'
 
-      %w(foo bar).each do |example|
+      %w[foo bar].each do |example|
         context "with <#{example}> only provided" do
           let(:query_params) { "?#{example}" }
           include_examples 'succeeds validation'
@@ -106,7 +106,7 @@ describe 'ValidateMyRoutes built-in validation rules for all parameters validati
     end
 
     describe 'Validation rule `at_least_one_of`' do
-      include_examples 'a valid validation rule', VMR_RULES.at_least_one_of(%i(foo bar)),
+      include_examples 'a valid validation rule', VMR_RULES.at_least_one_of(%i[foo bar]),
                        all_params: true
 
       include_context 'with mocked route in test app with parameters validation',
@@ -116,7 +116,7 @@ describe 'ValidateMyRoutes built-in validation rules for all parameters validati
 
       include_examples 'returns rule description in body', 'at least one of <foo, bar> parameters'
 
-      %w(foo bar).each do |example|
+      %w[foo bar].each do |example|
         context "with <#{example}> only provided" do
           let(:query_params) { "?#{example}" }
           include_examples 'succeeds validation'

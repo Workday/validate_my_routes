@@ -32,7 +32,7 @@ module ValidateMyRoutes
         # re-raising is needed in order to catch all other exceptions to wrap them in
         # special error
         raise
-      rescue => ex
+      rescue => ex # rubocop:disable Style/RescueStandardError
         # unexpected exception happened in validation block, so we should wrap it in special error
         raise Errors::ValidationRaisedAnExceptionError.new(ex, failure_code(path_param?))
       end

@@ -1,8 +1,5 @@
 Metrics/LineLength:
   Max: 100
 
-MethodLength:
-  Max: 15
-
-BracesAroundHashParameters:
+Metrics/BlockLength:
   Enabled: false
